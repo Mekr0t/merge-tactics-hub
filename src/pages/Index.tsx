@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { mockComps } from "@/data/mockData";
 import { TrendingUp, Zap, Users, BookOpen } from "lucide-react";
+import { Link } from "react-router-dom"
 
 const Index = () => {
   return (
@@ -17,7 +18,7 @@ const Index = () => {
             Best <span className="text-gradient">Merge Tactics</span> Comps
           </h1>
           <p className="text-xl text-muted-foreground mb-6">
-            Updated for Season X • Based on top player strategies & community rankings
+            Updated for current Season • Based on top player strategies & community rankings
           </p>
           <div className="flex justify-center space-x-4">
             <Badge variant="secondary" className="px-3 py-1">
@@ -26,7 +27,7 @@ const Index = () => {
             </Badge>
             <Badge variant="secondary" className="px-3 py-1">
               <Zap className="w-4 h-4 mr-2" />
-              Patch 2.4.1
+              Patch 13.8.2025
             </Badge>
           </div>
         </div>
@@ -38,39 +39,15 @@ const Index = () => {
             Meta Compositions
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mockComps.map((comp) => (
-              <CompCard key={comp.id} {...comp} />
-            ))}
-          </div>
-        </div>
-
-        {/* Community Section Preview */}
-        <div className="mb-12">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold flex items-center">
-              <Users className="w-6 h-6 mr-2 text-accent" />
-              🔥 Trending from Community
-            </h2>
-            <Button variant="outline">
-              View All Community Comps
-            </Button>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mockComps.slice(0, 3).map((comp) => (
-              <div key={`community-${comp.id}`} className="comp-card">
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-lg font-semibold">{comp.name} v2</h3>
-                  <Badge variant="secondary">Community</Badge>
-                </div>
-                <p className="text-sm text-muted-foreground mb-4">
-                  "Modified the classic {comp.name} build for better early game!"
-                </p>
-                <div className="flex justify-between items-center text-sm text-muted-foreground">
-                  <span>By: ProPlayer123</span>
-                  <span>👍 142 • 💬 23</span>
-                </div>
-              </div>
-            ))}
+            {[...mockComps]
+              .sort((a, b) => {
+                const order = { S: 0, A: 1, B: 2, C: 3 }
+                return order[a.tier] - order[b.tier]
+              })
+              .slice(0, 6)
+              .map(comp => (
+                <CompCard key={comp.id} {...comp} />
+              ))}
           </div>
         </div>
 
@@ -82,7 +59,7 @@ const Index = () => {
             <p className="text-muted-foreground mb-4">
               Learn the basics with our comprehensive beginner guides.
             </p>
-            <Button>Start Learning</Button>
+            <Button><Link to="/guides">Start Learning</Link></Button>
           </div>
           
           <div className="comp-card text-center">
@@ -91,7 +68,7 @@ const Index = () => {
             <p className="text-muted-foreground mb-4">
               Deep dive into the current meta with tier lists and analysis.
             </p>
-            <Button variant="outline">View Analysis</Button>
+            <Button variant="outline"><Link to="/comps">View Analysis</Link></Button>
           </div>
           
           <div className="comp-card text-center">
@@ -100,7 +77,13 @@ const Index = () => {
             <p className="text-muted-foreground mb-4">
               Share builds, discuss strategies, and connect with players.
             </p>
-            <Button variant="outline">Join Discord</Button>
+            <Button asChild variant="outline">
+              {/* DC server link will be there */}
+              <a 
+              >
+                Comming Soon
+              </a>
+            </Button>
           </div>
         </div>
       </section>

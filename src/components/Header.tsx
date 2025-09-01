@@ -1,7 +1,16 @@
-import { Search, Sword, Trophy, Users, BookOpen, Target } from "lucide-react";
+import { 
+  Search, Sword, Trophy, Users, BookOpen, Target, Puzzle, Menu 
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 export const Header = () => {
   return (
@@ -10,14 +19,16 @@ export const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <Sword className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <span className="text-xl font-bold text-gradient">MergeTactics.gg</span>
+            <img 
+              src="/favicon.ico" 
+              alt="TacticsMeta logo" 
+              className="w-12 h-12 rounded-lg"
+            />
+            <span className="text-xl font-bold text-gradient">TacticsMeta.com</span>
           </Link>
 
-          {/* Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
+          {/* Desktop Navigation - Centered */}
+          <nav className="hidden md:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2">
             <Link to="/comps" className="flex items-center space-x-2 text-muted-foreground hover:text-accent transition-colors">
               <Trophy className="w-4 h-4" />
               <span>Comps</span>
@@ -34,24 +45,45 @@ export const Header = () => {
               <BookOpen className="w-4 h-4" />
               <span>Guides</span>
             </Link>
-            <Link to="/community" className="flex items-center space-x-2 text-muted-foreground hover:text-accent transition-colors">
+            <Link to="/troops" className="flex items-center space-x-2 text-muted-foreground hover:text-accent transition-colors">
               <Users className="w-4 h-4" />
-              <span>Community</span>
+              <span>Troops</span>
+            </Link>
+            <Link to="/modifiers" className="flex items-center space-x-2 text-muted-foreground hover:text-accent transition-colors">
+              <Puzzle className="w-4 h-4" />
+              <span>Modifiers</span>
             </Link>
           </nav>
 
-          {/* Search */}
-          <div className="flex items-center space-x-4">
-            <div className="relative hidden sm:block">
-              <Input 
-                placeholder="Search comp or trait..." 
-                className="w-64 pl-10 bg-secondary border-accent/20 focus:border-accent"
-              />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          {/* Right Side: Search + Mobile Menu */}
+          <div className="flex items-center space-x-3">
+            {/* Desktop Search */}
+
+            {/* Mobile Search + Menu */}
+            <div className="flex items-center space-x-2 md:hidden">
+
+              {/* Hamburger / Drawer Menu */}
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button size="sm" variant="ghost">
+                    <Menu className="w-6 h-6" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-64">
+                  <SheetHeader>
+                    <SheetTitle>Menu</SheetTitle>
+                  </SheetHeader>
+                  <div className="flex flex-col space-y-4 mt-6">
+                    <Link to="/comps" className="text-lg">Comps</Link>
+                    <Link to="/traits" className="text-lg">Traits</Link>
+                    <Link to="/rulers" className="text-lg">Rulers</Link>
+                    <Link to="/guides" className="text-lg">Guides</Link>
+                    <Link to="/troops" className="text-lg">Troops</Link>
+                    <Link to="/modifiers" className="text-lg">Modifiers</Link>
+                  </div>
+                </SheetContent>
+              </Sheet>
             </div>
-            <Button size="sm" className="md:hidden">
-              <Search className="w-4 h-4" />
-            </Button>
           </div>
         </div>
       </div>

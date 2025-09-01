@@ -2,30 +2,30 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Crown } from "lucide-react";
 import { Link } from "react-router-dom";
+import { unitPortrait } from "@/lib/unitPortrait";
+import { calculateTraits } from "@/lib/calcTraits";
+import { normalizeUnitName } from "@/lib/unitUtils";
 
 interface CompCardProps {
   id: number;
   name: string;
   ruler: string;
   units: string[];
-  traits: Array<{ name: string; level: number }>;
   tier: 'S' | 'A' | 'B' | 'C';
   image?: string;
 }
 
-export const CompCard = ({ id, name, ruler, units, traits, tier }: CompCardProps) => {
+export const CompCard = ({ id, name, ruler, units, tier }: CompCardProps) => {
   const getTierStyle = (tier: string) => {
     switch (tier) {
-      case 'S':
-        return 'tier-s';
-      case 'A':
-        return 'tier-a';
-      case 'B':
-        return 'tier-b';
-      default:
-        return 'bg-muted text-muted-foreground';
+      case 'S': return 'tier-s';
+      case 'A': return 'tier-a';
+      case 'B': return 'tier-b';
+      default: return 'bg-muted text-muted-foreground';
     }
   };
+
+  const traits = calculateTraits(units ?? []);
 
   return (
     <div className="comp-card group cursor-pointer">
@@ -33,9 +33,7 @@ export const CompCard = ({ id, name, ruler, units, traits, tier }: CompCardProps
         <h3 className="text-lg font-semibold text-foreground group-hover:text-accent transition-colors">
           {name}
         </h3>
-        <Badge className={`tier-badge ${getTierStyle(tier)}`}>
-          {tier}
-        </Badge>
+        <Badge className={`tier-badge ${getTierStyle(tier)}`}>{tier}</Badge>
       </div>
 
       {/* Ruler */}
@@ -45,24 +43,32 @@ export const CompCard = ({ id, name, ruler, units, traits, tier }: CompCardProps
       </div>
 
       {/* Unit Icons */}
-      <div className="flex space-x-1 mb-3">
-        {units.map((unit, index) => (
-          <div
-            key={index}
-            className="w-8 h-8 bg-secondary rounded border border-accent/20 flex items-center justify-center text-xs font-medium neon-glow"
-          >
-            {unit.substring(0, 2).toUpperCase()}
-          </div>
-        ))}
+      <div className="flex space-x-1 overflow-x-auto no-scrollbar mb-3">
+        {units.map(unit => {
+          const normalized = normalizeUnitName(unit);
+          return (
+            <img
+              key={unit}
+              src={unitPortrait(normalized)}
+              alt={normalized}
+              className="w-16 h-18 flex-shrink-0 rounded object-cover border border-accent/20 neon-glow"
+            />
+          );
+        })}
       </div>
-
+      
       {/* Traits */}
       <div className="flex flex-wrap gap-1 mb-4">
-        {traits.map((trait, index) => (
-          <Badge key={index} variant="secondary" className="text-xs">
-            {trait.name} {trait.level}
-          </Badge>
-        ))}
+        <div className="flex flex-wrap gap-1 mb-4">
+          {traits
+            .sort((a, b) => b.level / b.max - a.level / a.max)
+            .slice(0, 5)
+            .map((trait, index) => (
+              <Badge key={index} variant="secondary" className="text-xs">
+                {trait.name} {trait.level}
+              </Badge>
+            ))}
+        </div>
       </div>
 
       <Button className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">

@@ -1,38 +1,57 @@
-interface BattlefieldGridProps {
-  units?: Array<{
-    position: number;
-    name: string;
-    cost: number;
-  }>;
-}
+import { unitPortrait } from "@/lib/unitPortrait";
+import { normalizeUnitName } from "@/lib/unitUtils";
 
-export const BattlefieldGrid = ({ units = [] }: BattlefieldGridProps) => {
-  const gridPositions = Array.from({ length: 16 }, (_, i) => i);
+// BattlefieldGrid.tsx
+export const BattlefieldGrid: React.FC<{ 
+  units: any[]; 
+  rows?: number; 
+  cols?: number; 
+}> = ({ units, rows = 4, cols = 5 }) => {
+  const map = new Map<string, any>();
+  units.forEach((u) => {
+    map.set(`${u.row},${u.col}`, u);
+  });
 
-  const getUnitAtPosition = (position: number) => {
-    return units.find(unit => unit.position === position);
-  };
+  const HEX =
+    "polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0% 50%)";
 
   return (
-    <div className="battlefield-grid">
-      {gridPositions.map((position) => {
-        const unit = getUnitAtPosition(position);
-        return (
-          <div
-            key={position}
-            className="aspect-square bg-secondary border border-accent/20 rounded flex items-center justify-center hover:border-accent/40 transition-colors"
-          >
-            {unit && (
-              <div className="text-center">
-                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-xs font-bold mb-1">
-                  {unit.name.substring(0, 2).toUpperCase()}
-                </div>
-                <div className="text-xs text-muted-foreground">{unit.cost}★</div>
+    <div className="w-full max-w-3xl mx-auto relative" style={{ left: "5%" }}>
+      {Array.from({ length: rows }).map((_, r) => (
+        <div
+          key={r}
+          className="grid gap-1 mb-2"
+          style={{
+            gridTemplateColumns: `repeat(${cols}, minmax(0,1fr))`,
+            transform: r % 2 ? "translateX(-10%)" : "none", // your stagger
+          }}
+        >
+          {Array.from({ length: cols }).map((_, c) => {
+            const key = `${r},${c}`;
+            const u = map.get(key);
+            return (
+              <div
+                key={c}
+                className="relative aspect-square"
+                style={{ clipPath: HEX }}
+              >
+                <div className="absolute inset-0 bg-zinc-700/30 border border-white/10" />
+                {u && (() => {
+                  const normalized = normalizeUnitName(u.name);
+                  return (
+                    <img
+                      src={unitPortrait(normalized)}
+                      alt={u.name}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      style={{ clipPath: HEX }}
+                    />
+                  );
+                })()}
               </div>
-            )}
-          </div>
-        );
-      })}
+            );
+          })}
+        </div>
+      ))}
     </div>
   );
 };

@@ -4,6 +4,7 @@
 
 /* MergeTactics.gg Design System - Gaming Dark Theme */
 
+
 @layer base {
   :root {
     --background: 240 10% 3.9%;
@@ -37,8 +38,8 @@
     --radius: 0.5rem;
 
     /* Gaming-specific design tokens */
-    --tier-s: 45 100% 60%;
-    --tier-a: 32 100% 50%;
+    --tier-s: 0 100% 60%;
+    --tier-a: 125 70% 45%;
     --tier-b: 60 100% 50%;
     --tier-c: 0 0% 60%;
     
@@ -146,7 +147,7 @@
   }
   
   .tier-a {
-    @apply bg-orange-500 text-white;
+    @apply bg-green-500 text-white;
   }
   
   .tier-b {

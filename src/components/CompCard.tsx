@@ -62,7 +62,7 @@ export const CompCard = ({ id, name, ruler, units, tier }: CompCardProps) => {
         <div className="flex flex-wrap gap-1 mb-4">
           {traits
             .sort((a, b) => b.level / b.max - a.level / a.max)
-            .slice(0, 5)
+            .slice(0, 4)
             .map((trait, index) => (
               <Badge key={index} variant="secondary" className="text-xs">
                 {trait.name} {trait.level}

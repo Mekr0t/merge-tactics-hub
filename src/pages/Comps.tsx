@@ -89,7 +89,7 @@ export default function Comps() {
                       <div className="flex flex-wrap gap-1 mb-3">
                         {traits
                           .sort((a, b) => b.level / b.max - a.level / a.max)
-                          .slice(0, 5)
+                          .slice(0, 4)
                           .map((trait, index) => (
                             <Badge key={index} variant="secondary" className="text-xs">
                               {trait.name} {trait.level}

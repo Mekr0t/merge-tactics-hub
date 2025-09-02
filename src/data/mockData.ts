@@ -249,8 +249,34 @@ export const mockComps = [
       { name: "Mega Knight",  row: 0, col: 0 },
     ],
   },
-  
-  // 11) From image research
+
+  {
+    id: 10,
+    name: "Noble Ranger",
+    ruler: "Spirit Empress",
+    units: ["Golden Knight", "Knight", "Princess", "Prince", "Dart Goblin", "Archer"],
+    tier: "B" as const,
+    description: "Noble frontline tanks protect scaling Rangers with piercing damage.",
+    descriptionLong:
+      "Noble Ranger blends the durability of Noble frontline units with the relentless scaling of Rangers. Golden Knight and Knight hold the line, while Prince provides strong single-target pressure. In the backline, Princess, Dart Goblin, and Archer scale into high DPS threats. The Noble synergy enhances frontline survivability and backline damage, making this comp a consistent performer across different lobbies.",
+    whenToPlay:
+      "Best when you find early Rangers or Princess quickly. Excels against Clan and Thrower comps by outlasting them with a sturdy Noble front.",
+    coreUnits: ["Princess", "Golden Knight", "Dart Goblin"],
+    tips: [
+      "Allways put your Rangers in the backline so they recieve Noble trait buffs consistently.",
+      "Use Prince aggressively to break through enemy tanks or dive into carries.",
+      "Fan out Rangers to avoid losing them all to AoE abilities.",
+    ],
+    battlefieldUnits: [
+      { name: "Golden Knight", row: 0, col: 3 },
+      { name: "Knight",        row: 0, col: 1 },
+      { name: "Prince",        row: 2, col: 2 },
+      { name: "Princess",      row: 3, col: 2 },
+      { name: "Dart Goblin",   row: 3, col: 4 },
+      { name: "Archer",        row: 3, col: 0 },
+    ],
+  },
+
   {
     id: 11,
     name: "Goblin Assassin",

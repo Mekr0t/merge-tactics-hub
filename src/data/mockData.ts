@@ -20,12 +20,12 @@ export const mockComps = [
       "Deny enemy upgrades by buying their key units in shop."
     ],
     battlefieldUnits: [
-      { name: "Archer Queen", row: 2, col: 1 },
-      { name: "Bandit",       row: 0, col: 0 },
-      { name: "Mega Knight",  row: 0, col: 4 },
-      { name: "Valkyrie",     row: 0, col: 1 },
-      { name: "Archer",       row: 2, col: 3 },
-      { name: "Barbarian",    row: 0, col: 3 },
+      { name: "Archer Queen", row: 0, col: 4 },
+      { name: "Bandit",       row: 0, col: 3 },
+      { name: "Mega Knight",  row: 0, col: 0 },
+      { name: "Valkyrie",     row: 0, col: 2 },
+      { name: "Archer",       row: 3, col: 2 },
+      { name: "Barbarian",    row: 0, col: 1 },
     ],
   },
 
@@ -35,7 +35,7 @@ export const mockComps = [
     name: "Assassin Ranger",
     ruler: "Spirit Empress",
     units: ["Golden Knight", "Royal Ghost", "Princess", "Dart Goblin", "Archer", "Goblin"],
-    tier: "S" as const,
+    tier: "A" as const,
     description: "Burst assassins + scaling rangers to delete carries fast.",
     descriptionLong:
       "Assassin Ranger blends high-burst assassins with relentless ranger scaling. Golden Knight and Royal Ghost dive into the enemy backline while Princess and Dart Goblin shred from safety. The comp thrives on tempo—clean positioning turns fights before enemies stabilize.",
@@ -63,7 +63,7 @@ export const mockComps = [
     name: "Clan Ranger",
     ruler: "Spirit Empress",
     units: ["Archer Queen", "Princess", "Dart Goblin", "Valkyrie", "Archer", "Barbarian"],
-    tier: "S" as const,
+    tier: "A" as const,
     description: "Reliable Clan front with Ranger DPS scaling.",
     descriptionLong:
       "Clan Ranger merges a stable Clan frontline with the scaling DPS of Rangers. Archer Queen and Princess pressure from range while Valkyrie/Barbarian keep the front intact. It’s less bursty than Assassin comps but wins through consistency and adaptable positioning.",
@@ -89,23 +89,23 @@ export const mockComps = [
     id: 4,
     name: "Juggernaut Throwers",
     ruler: "Sprit Empress",
-    units: ["Spear Goblin", "Skeleton King", "Goblin Machine", "P.E.K.K.A", "Executioner", "Bomber"],
+    units: ["Spear Goblin", "Giant Skeleton", "Goblin Machine", "P.E.K.K.A", "Executioner", "Bomber"],
     tier: "A" as const,
     description: "Tanky Juggernauts upfront with Throwers providing long-range AoE.",
     descriptionLong:
-      "Juggernaut Throwers mix a strong frontline of Skeleton King, Goblin Machine, and P.E.K.K.A with backline AoE from Executioner, Bomber, and Spear Goblin. The Juggernaut synergy grants frontline shields and stuns, buying time for Throwers to rain down damage from a distance. It excels in mid-to-late fights where sturdy tanks and consistent AoE wear opponents down.",
+      "Juggernaut Throwers mix a strong frontline of Giant Skeleton, Goblin Machine, and P.E.K.K.A with backline AoE from Executioner, Bomber, and Spear Goblin. The Juggernaut synergy grants frontline shields and stuns, buying time for Throwers to rain down damage from a distance. It excels in mid-to-late fights where sturdy tanks and consistent AoE wear opponents down.",
     whenToPlay:
-      "Run this when you get early Juggernaut pieces (Skeleton King, Goblin Machine) or multiple Throwers in shop. Great against swarmy or melee-heavy lobbies.",
-    coreUnits: ["Skeleton King", "Executioner", "Goblin Machine"],
+      "Run this when you get early Juggernaut pieces (P.E.K.K.A, Goblin Machine) or multiple Throwers in shop. Great against swarmy or melee-heavy lobbies.",
+    coreUnits: ["Giant Skeleton", "Executioner", "Goblin Machine"],
     tips: [
       "Keep Throwers two rows back to fully use their range bonus.",
-      "Skeleton King should anchor center frontline to maximize his shield and death effect.",
+      "Giant Skeleton should anchor center frontline to maximize his death effect.",
       "Use Goblin Machine as an early-game stabilizer until your big tanks come online."
     ],
     battlefieldUnits: [
-      { name: "Skeleton King", row: 0, col: 2 },
-      { name: "Goblin Machine",row: 0, col: 1 },
-      { name: "P.E.K.K.A",     row: 0, col: 3 },
+      { name: "Giant Skeleton", row: 0, col: 2 },
+      { name: "Goblin Machine",row: 1, col: 2 },
+      { name: "P.E.K.K.A",     row: 1, col: 3 },
       { name: "Executioner",   row: 3, col: 2 },
       { name: "Bomber",        row: 3, col: 0 },
       { name: "Spear Goblin",  row: 3, col: 4 },
@@ -141,10 +141,10 @@ export const mockComps = [
 
   {
     id: 6,
-    name: "Princess Carry",
+    name: "Tanky Ranger",
     ruler: "Spirit Empress",
     units: ["Princess", "Archer", "Dart Goblin", "Knight", "Valkyrie", "Goblin Machine"],
-    tier: "A" as const,
+    tier: "S" as const,
     description: "High-tempo 3× Ranger rush to a fast 3★ Princess.",
     descriptionLong:
       "Built around cheap Rangers to hit 3× Ranger instantly and snowball tempo. Cycle merges for extra elixir and rush a 3★ Princess before heavy comps stabilize. Knight/Valkyrie anchor a modest front while your backline overwhelms with speed.",
@@ -157,12 +157,12 @@ export const mockComps = [
       "Keep cycling merges to farm elixir and tempo advantage."
     ],
     battlefieldUnits: [
-      { name: "Princess",   row: 3, col: 2 },
-      { name: "Archer",     row: 3, col: 0 },
-      { name: "Dart Goblin",row: 3, col: 4 },
-      { name: "Knight",     row: 0, col: 1 },
+      { name: "Princess",   row: 3, col: 4 },
+      { name: "Archer",     row: 3, col: 2 },
+      { name: "Dart Goblin",row: 3, col: 0 },
+      { name: "Knight",     row: 1, col: 2 },
       { name: "Valkyrie",   row: 0, col: 2 },
-      { name: "Goblin Machine",     row: 0, col: 3 },
+      { name: "Goblin Machine",     row: 1, col: 3 },
     ],
   },
 
@@ -244,7 +244,7 @@ export const mockComps = [
       { name: "Archer Queen", row: 2, col: 2 },
       { name: "Bandit",       row: 0, col: 1 },
       { name: "Valkyrie",     row: 0, col: 2 },
-      { name: "P.E.K.K.A",        row: 0, col: 3 },
+      { name: "P.E.K.K.A",    row: 0, col: 3 },
       { name: "Executioner",  row: 3, col: 2 },
       { name: "Mega Knight",  row: 0, col: 0 },
     ],
@@ -255,7 +255,7 @@ export const mockComps = [
     name: "Noble Ranger",
     ruler: "Spirit Empress",
     units: ["Golden Knight", "Knight", "Princess", "Prince", "Dart Goblin", "Archer"],
-    tier: "B" as const,
+    tier: "A" as const,
     description: "Noble frontline tanks protect scaling Rangers with piercing damage.",
     descriptionLong:
       "Noble Ranger blends the durability of Noble frontline units with the relentless scaling of Rangers. Golden Knight and Knight hold the line, while Prince provides strong single-target pressure. In the backline, Princess, Dart Goblin, and Archer scale into high DPS threats. The Noble synergy enhances frontline survivability and backline damage, making this comp a consistent performer across different lobbies.",
@@ -303,6 +303,89 @@ export const mockComps = [
       { name: "Goblin",         row: 0, col: 0 },
     ],
   },
+  {
+    id: 12,
+    name: "4 Ace Golden Knight",
+    ruler: "Spirit Empress",
+    units: ["Golden Knight", "Mega Knight", "Bandit", "P.E.K.K.A", "Executioner", "Knight"],
+    tier: "S" as const,
+    description: "Stacked Ace synergy with brutal frontline and Golden Knight carry.",
+    descriptionLong:
+      "4 Ace Golden Knight leverages the powerful Ace trait to supercharge your frontline and carries. Golden Knight becomes an unstoppable diving captain, supported by Bandit’s stuns and P.E.K.K.A’s heavy blows. Mega Knight and Knight provide frontline durability, while Executioner adds reliable AoE from the backline. Once Ace scaling kicks in, your team overwhelms with both sustain and burst.",
+    whenToPlay:
+      "Ideal when you find Golden Knight or Bandit early and want to force Ace synergy. Counters fragile Ranger and Assassin comps by punishing squishy backlines.",
+    coreUnits: ["Golden Knight", "Bandit", "P.E.K.K.A"],
+    tips: [
+      "Golden Knight should dive directly into the enemy backline — place him center-front.",
+      "Bandit works best on the side to dash into carries.",
+      "Executioner should be placed safely behind tanks to maximize line AoE.",
+      "Upgrade Golden Knight early; as Captain, he benefits most from Ace bonuses."
+    ],
+    battlefieldUnits: [
+      { name: "Golden Knight", row: 1, col: 4 },
+      { name: "Bandit",        row: 1, col: 1 },
+      { name: "Mega Knight",   row: 1, col: 3 },
+      { name: "Knight",        row: 0, col: 3 },
+      { name: "P.E.K.K.A",     row: 0, col: 0 },
+      { name: "Executioner",   row: 1, col: 0 },
+    ],
+  },
+  {
+    id: 13,
+    name: "CC Ranger",
+    ruler: "Spirit Empress",
+    units: ["Princess", "Goblin Machine", "Bandit", "Giant Skeleton", "Dart Goblin", "Archer" ],
+    tier: "S" as const,
+    description: "Control-heavy frontline with scaling Ranger backline.",
+    descriptionLong:
+      "CC Ranger blends crowd-control tanks with scaling Ranger damage. Giant Skeleton and anchor the frontline, Bandit disrupts enemy carries, while Princess, Dart Goblin, and Archer stack Ranger synergy to overwhelm from the back. Goblin Machine adds Juggernaut shielding and durability, making the team stable into late game. Once Rangers reach high star levels, their DPS becomes relentless.",
+    whenToPlay:
+      "Play this comp if you hit early Rangers or find Princess copies. Great into melee-heavy or slow-scaling comps.",
+    coreUnits: ["Princess", "Goblin Machine", "Giant Skeleton"],
+    tips: [
+      "Position Princess so her shots pierce multiple enemies.",
+      "Use Goblin Machine and  to absorb frontline pressure.",
+      "Bandit can be swapped for Prince if you want a sturdier frontline option.",
+      "Spread out your Rangers to avoid losing them all to AoE abilities."
+    ],
+    battlefieldUnits: [
+      { name: "Goblin Machine", row: 1, col: 3 },
+      { name: "Giant Skeleton", row: 0, col: 2 },
+      { name: "Bandit",         row: 1, col: 2 },
+      { name: "Princess",       row: 3, col: 4 },
+      { name: "Dart Goblin",    row: 3, col: 0 },
+      { name: "Archer",         row: 3, col: 2 },
+    ],
+  },
+  {
+    id: 14,
+    name: "Brawler Smasher",
+    ruler: "Spirit Empress",
+    units: ["Giant Skeleton", "P.E.K.K.A", "Skeleton King", "Mega Knight", "Barbarian", "Prince"],
+    tier: "B" as const,
+    description: "Full bruiser frontline with devastating Juggernaut control.",
+    descriptionLong:
+      "Brawler Smashers is a powerhouse frontline comp designed to overwhelm enemies with shields, stuns, and death effects. Giant Skeleton and Skeleton King provide explosive and tanky utility, while P.E.K.K.A and Mega Knight bring huge single-target and AoE damage. Prince and Barbarian add cheap frontline synergy and charge threat, giving the team both durability and initiation. This comp thrives in brawly fights where raw stats and Juggernaut traits dominate.",
+    whenToPlay:
+      "Choose this comp if you find multiple Juggernaut pieces early or face squishy ranged comps that struggle to deal with tanks. Excellent in lobbies lacking Thrower burst.",
+    coreUnits: ["Skeleton King", "Giant Skeleton", "P.E.K.K.A"],
+    tips: [
+      "Giant Skeleton should be front and center to maximize his death bomb impact.",
+      "Skeleton King’s shield and revive make him an ideal anchor for the frontline.",
+      "Mega Knight should jump into clustered enemies — place him opposite stacked frontlines.",
+      "Prince provides strong single-target pick potential — position him to spear enemy carries.",
+    ],
+    battlefieldUnits: [
+      { name: "Skeleton King",   row: 1, col: 2 },
+      { name: "P.E.K.K.A",       row: 1, col: 3 },
+      { name: "Giant Skeleton",  row: 0, col: 2 },
+      { name: "Mega Knight",     row: 2, col: 1 },
+      { name: "Barbarian",       row: 2, col: 3 },
+      { name: "Prince",          row: 2, col: 2 },
+    ],
+  },
+
+
 ];
 
 

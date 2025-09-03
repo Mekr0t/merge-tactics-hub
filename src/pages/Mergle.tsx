@@ -100,7 +100,15 @@ export default function MergleGame() {
   const makeGuess = () => {
     if (!currentGuess.trim() || gameWon || gameLost) return;
 
-    const guess = currentGuess.trim();
+    const rawGuess = currentGuess.trim();
+
+    // 🔄 alias normalization
+    const aliases: Record<string, string> = {
+      pekka: "P.E.K.K.A",
+      "p.e.k.k.a": "P.E.K.K.A",
+    };
+    const guess =
+      aliases[rawGuess.toLowerCase()] ?? rawGuess;
 
     // 🚫 check duplicates
     if (guesses.some(g => g.toLowerCase() === guess.toLowerCase())) {
@@ -116,7 +124,9 @@ export default function MergleGame() {
         m.modifiers.some(mod => mod.title.toLowerCase() === guess.toLowerCase())
       );
     } else {
-      valid = allUnits.some(u => u.displayName.toLowerCase() === guess.toLowerCase());
+      valid = allUnits.some(
+        u => u.displayName.toLowerCase() === guess.toLowerCase()
+      );
     }
 
     if (!valid) {
@@ -133,7 +143,11 @@ export default function MergleGame() {
     inputRef.current?.focus();
 
     let won = false;
-    if (mode === GameModes.CLASSIC || mode === GameModes.DESCRIPTION || mode === GameModes.PORTRAIT) {
+    if (
+      mode === GameModes.CLASSIC ||
+      mode === GameModes.DESCRIPTION ||
+      mode === GameModes.PORTRAIT
+    ) {
       won = guess.toLowerCase() === currentUnit.displayName.toLowerCase();
     } else if (mode === GameModes.TRAIT) {
       won = guess.toLowerCase() === missingUnit.displayName.toLowerCase();
@@ -156,10 +170,35 @@ export default function MergleGame() {
   /** Suggestions (only after first char, startsWith) */
   const suggestions = useMemo(() => {
     if (currentGuess.length < 1) return [];
-    const src = mode === GameModes.MODIFIER ? mockModifiers.flatMap((m) => m.modifiers.map((mod) => mod.title)) : unitNames;
+
+    // Source depends on mode
+    const src =
+      mode === GameModes.MODIFIER
+        ? mockModifiers.flatMap((m) => m.modifiers.map((mod) => mod.title))
+        : unitNames;
+
     const q = currentGuess.toLowerCase();
-    return src.filter((name) => name.toLowerCase().startsWith(q)).slice(0, 10);
+
+    // Special alias handling
+    const aliases: Record<string, string> = {
+      pekka: "P.E.K.K.A",
+      "p.e.k.k.a": "P.E.K.K.A",
+    };
+
+    // If query exactly matches an alias start
+    const aliasMatches = Object.entries(aliases)
+      .filter(([alias]) => alias.startsWith(q))
+      .map(([, target]) => target);
+
+    // Normal matches
+    const normalMatches = src.filter((name) =>
+      name.toLowerCase().startsWith(q)
+    );
+
+    // Merge, dedupe, and limit to 10
+    return [...new Set([...aliasMatches, ...normalMatches])].slice(0, 10);
   }, [currentGuess, mode]);
+
 
   /** Classic feedback colors (green, orange for ±1, red) */
   const getClassicFeedback = (guess: string, target: any) => {

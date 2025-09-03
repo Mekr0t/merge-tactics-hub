@@ -1,3 +1,4 @@
-export const normalizeUnitName = (name: string) => {
-  return name.replace(/[\s.]+/g, "").toLowerCase();
-};
+export const normalizeUnitName = (name: string) =>
+  name
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, ""); // keep only letters + numbers

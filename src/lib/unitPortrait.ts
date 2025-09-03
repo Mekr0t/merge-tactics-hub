@@ -1,2 +1,4 @@
+import { normalizeUnitName } from "./unitUtils";
+
 export const unitPortrait = (unitName: string) =>
-  `/units/${unitName.toLowerCase().replace(/\s+/g, '')}.webp`;
+  `/units/${normalizeUnitName(unitName)}.webp`;

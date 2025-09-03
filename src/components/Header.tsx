@@ -1,5 +1,5 @@
 import { 
-  Search, Sword, Trophy, Users, BookOpen, Target, Puzzle, Menu 
+  Search, Sword, Trophy, Users, BookOpen, Target, Puzzle, Menu, CircuitBoard
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -50,8 +50,12 @@ export const Header = () => {
               <span>Troops</span>
             </Link>
             <Link to="/modifiers" className="flex items-center space-x-2 text-muted-foreground hover:text-accent transition-colors">
-              <Puzzle className="w-4 h-4" />
+              <CircuitBoard className="w-4 h-4" />
               <span>Modifiers</span>
+            </Link>
+            <Link to="/mergle" className="flex items-center space-x-2 text-muted-foreground hover:text-accent transition-colors">
+              <Puzzle className="w-4 h-4" />
+              <span>Mergle</span>
             </Link>
           </nav>
 
@@ -80,6 +84,7 @@ export const Header = () => {
                     <Link to="/guides" className="text-lg">Guides</Link>
                     <Link to="/troops" className="text-lg">Troops</Link>
                     <Link to="/modifiers" className="text-lg">Modifiers</Link>
+                    <Link to="/mergle" className="text-lg">Mergle</Link>
                   </div>
                 </SheetContent>
               </Sheet>

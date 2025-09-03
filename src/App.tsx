@@ -13,6 +13,7 @@ import Guides from "./pages/Guides";
 import Modifiers from "./pages/Modifiers";
 import Units from "./pages/Troops";
 import ScrollToTop from "./components/ScrollToTop";
+import Mergle from "./pages/Mergle";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
             <Route path="/guides" element={<Guides />} />
             <Route path="/troops" element={<Units />} />
             <Route path="/modifiers" element={<Modifiers />} />
+            <Route path="/mergle" element={<Mergle />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </ScrollToTop>

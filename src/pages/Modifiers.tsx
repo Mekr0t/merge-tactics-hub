@@ -22,7 +22,7 @@ export default function Modifiers() {
               {league.name}
             </h2>
 
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-2">
               {league.modifiers.map((mod, i) => (
                 <Card
                   key={i}
@@ -36,7 +36,7 @@ export default function Modifiers() {
                         alt={mod.title}
                         className="w-full h-full object-contain"
                         onError={(e) => {
-                          (e.currentTarget as HTMLImageElement).src = "/placeholder.svg"
+                          (e.currentTarget as HTMLImageElement).src = "/modifiers/pandorasbench.webp"
                         }}
                       />
                     </div>

@@ -10,9 +10,21 @@ const rulers = [
   },
   {
     name: "Spirit Empress",
-    unlock: "Unlocks at Silver I",
+    unlock: "New players won’t be able to unlock her",
     ability: "Fusion Foresight: Every merge grants you +1 bonus Elixir",
     image: "/rulers/spiritempress.webp",
+  },
+  {
+    name: "Goblin Queen",
+    unlock: "Unlocks at Bronze III",
+    ability: "Defeating an enemy troop grants you a 40% chance of spawning a Goblin",
+    image: "/rulers/goblinqueen.webp",
+  },
+  {
+    name: "Elixir Loong",
+    unlock: "Comming in November",
+    ability: "Gain +1 Elixir per turn and +1 team size",
+    image: "/rulers/loong.webp",
   },
 ]
 
